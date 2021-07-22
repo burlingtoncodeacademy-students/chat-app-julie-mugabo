@@ -1,10 +1,18 @@
+import { useLocation } from "react-router-dom"
+
 const ChatFoot = () => {
+
+  let location = useLocation()
+
+  let user = location.pathname.split("/").splice(-1).toString()
+  
   return (
     <>
-      <form>
-        <input type="text" placeholder="Talk to #channel" />
-        <button>Refresh chat</button>
+      <form action = "/send" method = "POST">
+        <input type="text" placeholder="Talk to #channel" name = "message" />
+        <input type = "hidden" value = {user} name = "user"/>
       </form>
+      <button>Refresh chat</button>
     </>
   );
 };
