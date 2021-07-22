@@ -10,23 +10,37 @@ const staticDir = process.env.DEV ? "./client/public" : "./client/build";
 
 app.use(express.static(staticDir));
 
-app.use(express.urlencoded({extended: true});
+app.use(express.urlencoded({extended: true}));
 
 // setup mongoose
-const atlasDbUrl = "mongodb://localhost:27017"
-mongoose.connect(altasDbUrl,{
+const atlasDbUrl = `mongodb+srv://${process.env.USER}:${process.env.PASS}@cluster0.dspxo.mongodb.net/chatproject?retryWrites=true&w=majority`
+mongoose.connect(atlasDbUrl,{
   useNewUrlParser: true,
   useUnifiedTopology: true
 });
 
 const db = mongoose.connection
 
+const messageSchema = new mongoose.Schema({
+  when: Date,
+  body: String,
+  user: String
+})
+
+const Message = mongoose.model("Message", messageSchema)
+
 
 // set error message
 db.on('error', console.error.bind(console, 'conection error'))
 
 
+app.post("/enter", (req, res) => {
 
+  //setting user to the body of the request
+  const { user } = req.body
+
+ res.redirect(`/chat/${user}`)
+})
 
 
 
