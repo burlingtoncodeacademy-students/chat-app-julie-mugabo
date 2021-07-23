@@ -1,4 +1,5 @@
 import { useState, useEffect } from 'react';
+import { styles } from "./styles"
 
 const ChatMess = (props) => {
   const [messages, setMessages] = useState([]);
@@ -21,11 +22,13 @@ const ChatMess = (props) => {
 
   return (
     <>
+    <div style = {styles.ChatMess}>
       {messages.map((msg, index) => (
         <p key={index}>
           {msg.user}: {msg.body} ({msg.when})
         </p>
       ))}
+      </div>
     </>
   );
 };
