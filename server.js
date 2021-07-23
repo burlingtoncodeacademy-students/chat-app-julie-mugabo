@@ -54,6 +54,18 @@ app.post('/send', (req, res) => {
       console.log(`Message sent: ${doc}`);
     }
   });
+
+  // stay on the same user's chat
+  // ? does this refresh the page?
+  res.redirect(`/chat/${user}`);
+});
+
+app.get('/messages', async (req, res) => {
+  // get messages from db
+  const messages = await Message.find({});
+
+  // send message as json
+  res.json(messages);
 });
 
 app.listen(port, () => {
