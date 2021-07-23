@@ -24,6 +24,7 @@ const messageSchema = new mongoose.Schema({
   when: Date,
   body: String,
   user: String,
+  channel: String,
 });
 
 const Message = mongoose.model('Message', messageSchema);
@@ -56,16 +57,50 @@ app.post('/send', (req, res) => {
   });
 
   // stay on the same user's chat
-  // ? does this refresh the page?
-  // res.redirect(`/chat/${user}`);
   res.status(204).send();
 });
 
+// RESTful endpoint to send & save a message to a channel
+// TODO Remove app.post('/send') once fully functional
+app.post('/messages/:channel', (req, res) => {
+  const { message, user, channel } = req.body;
+
+  let savedMsg = new Message({
+    when: new Date().toISOString(),
+    body: message,
+    user: user,
+    channel: channel,
+  });
+
+  savedMsg.save((err, doc) => {
+    if (err) {
+      console.log(err.message);
+    } else {
+      console.log(`Message sent: ${doc}`);
+    }
+  });
+
+  // stay on the same user's chat
+  res.status(204).send();
+});
+
+// get all messages
 app.get('/messages', async (req, res) => {
   // get messages from db
   const messages = await Message.find({});
 
   // send message as json
+  res.json(messages);
+});
+
+// RESTful end point to get all messages from a channel
+app.get('/messages/:channel', async (req, res) => {
+  let channel = req.params.channel;
+
+  // get all messages from this channel
+  const messages = await Message.find({ channel });
+
+  // send messages as json
   res.json(messages);
 });
 
