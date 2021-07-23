@@ -1,23 +1,18 @@
-import { BrowserRouter, Switch, Route, Link } from "react-router-dom"
-
-
-
+import { BrowserRouter, Switch, Route, Link } from 'react-router-dom';
 
 import './App.css';
-import Welcome from "./components/Welcome.jsx"
-import Chat from "./components/Chat.jsx"
-
-
+import Welcome from './components/Welcome.jsx';
+import Chat from './components/Chat.jsx';
 
 function App() {
   return (
     <>
-       <BrowserRouter>
-    <Switch>
-      <Route path = "/" component = {Welcome} exact />
-      <Route path = "/chat" component = {Chat} />
-      </Switch>
-    </BrowserRouter>
+      <BrowserRouter>
+        <Switch>
+          <Route path='/' component={Welcome} exact />
+          <Route path='/chat' component={Chat} />
+        </Switch>
+      </BrowserRouter>
     </>
   );
 }
