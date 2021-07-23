@@ -2,6 +2,9 @@ import { useState, useEffect } from 'react';
 
 const ChatMess = (props) => {
   const [messages, setMessages] = useState([]);
+  const [update, setUpdate] = useState(0);
+
+  setInterval(() => setUpdate(update + 1), 10000);
 
   useEffect(() => {
     fetch('/messages')
@@ -14,7 +17,7 @@ const ChatMess = (props) => {
     return () => {
       // cleanup;
     };
-  }, []);
+  }, [update]);
 
   return (
     <>
