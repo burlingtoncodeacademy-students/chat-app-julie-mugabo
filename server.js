@@ -57,7 +57,8 @@ app.post('/send', (req, res) => {
 
   // stay on the same user's chat
   // ? does this refresh the page?
-  res.redirect(`/chat/${user}`);
+  // res.redirect(`/chat/${user}`);
+  res.status(204).send();
 });
 
 app.get('/messages', async (req, res) => {
