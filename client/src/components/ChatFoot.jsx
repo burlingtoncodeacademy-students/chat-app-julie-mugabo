@@ -12,7 +12,7 @@ const ChatFoot = () => {
         <input type="text" placeholder="Talk to #channel" name = "message" />
         <input type = "hidden" value = {user} name = "user"/>
       </form>
-      <button>Refresh chat</button>
+      
     </>
   );
 };

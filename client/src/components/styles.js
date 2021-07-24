@@ -42,8 +42,9 @@ const ChatHead = {
 }
 
 const ChatMess = {
-    display: "inline-flex",
-    flexDirection: "column"
+    display: "flex",
+    flexDirection: "column",
+    overflow: "scroll"
 }
 
 

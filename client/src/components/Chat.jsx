@@ -2,27 +2,27 @@ import SideBar from "./SideBar";
 import ChatHead from "./ChatHead";
 import ChatMess from "./ChatMess";
 import ChatFoot from "./ChatFoot";
-
+import { Grid } from "@material-ui/core";
 const Chat = () => {
-  const compLayout = {
-    display: "grid",
-    gridTemplateColumns: "0.7fr 1.3fr 1fr",
-    gridTemplateRows: "0.5fr 3fr 0.4fr",
-    gridTemplateAreas: `
-    'Sidebar ChatHead ChatHead'
-    'Sidebar ChatMess ChatMess'
-    'Sidebar ChatFoot ChatFoot'
-    `
-  };
-
   return (
     <>
-      <div style={compLayout}>
-        <SideBar style = {{gridArea: "Sidebar"}} />
-        <ChatHead style = {{gridArea: "ChatHead"}}  />
-        <ChatMess style = {{gridArea: "ChatMess"}} />
-        <ChatFoot style = {{gridArea: "ChatFoot"}} />
-      </div>
+      {/* setting the spacing between children in the container */}
+      <Grid container spacing={2}>
+        <Grid item xs={12}>
+          <ChatHead />
+        </Grid>
+        <Grid item xs={2}>
+          <SideBar />
+        </Grid>
+        <Grid item xs={10}>
+          <ChatMess />
+        </Grid>
+        {/* empty Grid div to align ChatFoot with ChatMess */}
+        <Grid item xs={2}></Grid>
+        <Grid item xs={10}>
+          <ChatFoot />
+        </Grid>
+      </Grid>
     </>
   );
 };
