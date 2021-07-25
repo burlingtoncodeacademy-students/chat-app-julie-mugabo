@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react';
 import { styles } from "./styles"
+import { CssBaseline, Typography } from '@material-ui/core';
 
 const ChatMess = (props) => {
   const [messages, setMessages] = useState([]);
@@ -22,11 +23,12 @@ const ChatMess = (props) => {
 
   return (
     <>
+    <CssBaseline />
     <div style = {styles.ChatMess}>
       {messages.map((msg, index) => (
-        <p key={index}>
+        <Typography key={index}>
           {msg.user}: {msg.body} ({msg.when})
-        </p>
+        </Typography>
       ))}
       </div>
     </>

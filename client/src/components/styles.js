@@ -5,46 +5,41 @@ const Welcome = {
     display: "flex",
     flexDirection: "column",
     alignItems: "center",
-    margin: "18vh 22vw 10vh 22vw",
+    margin: "15vh 22vw 10vh 22vw",
     width: "50vw",
-    backgroundColor: "#FFCB47",
     padding: "10vh 3vw 5vh 3vw",
-    borderRadius: "20em"
-    ,
+    backgroundColor: "#2D7DD2",
 
     H1: {
         fontSize: "4rem",
-        backgroundColor: "#56949F",
-        padding: "5rem",
-        borderRadius: "10rem",
-        color: "white",
-        textShadow: "2px 2px #4A5043"
+        padding: "1rem",
+        color: "black",
+        margin: ".5rem",
+        fontWeight: "bold",
+        backgroundColor: "white"
     }
 
     ,
+    
 
     H2: {
         fontSize: "2rem",
-        color: "white",
-        textShadow: "1px 1px #4A5043",
-        backgroundColor: "#6FAE81",
+        color: "black",
         padding: "1rem",
-        borderRadius: "10rem",
         textAlign: "center",
+        margin: "1rem",
+        backgroundColor: "white",
     }
 
 
 }
 
 
-const ChatHead = {
 
-}
 
 const ChatMess = {
     display: "flex",
     flexDirection: "column",
-    overflow: "scroll"
 }
 
 

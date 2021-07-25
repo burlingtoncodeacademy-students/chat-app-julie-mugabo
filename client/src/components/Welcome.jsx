@@ -1,15 +1,26 @@
-import { styles } from "./styles"
+import { TextField, CssBaseline, Typography, Card, InputAdornment, } from '@material-ui/core'
+import AccountCircle from '@material-ui/icons/AccountCircle'
+import { styles } from "./styles.js"
 
 const Welcome = () => {
+
+
   return (
     <>
-    <div style = {styles.Welcome}>
-      <h1 style = {styles.Welcome.H1}>Hi, ready to chat?</h1>
-      <h2 style = {styles.Welcome.H2}>Enter your name</h2>
+    <CssBaseline />
+    <Card style = {styles.Welcome}>
+    <Typography variant="h1" style = {styles.Welcome.H1}>Hi, welcome to WhoChats.</Typography>
+    <Typography variant="h2" style = {styles.Welcome.H2}>Are you ready to connect with a stranger?</Typography>
       <form method = "POST" action = "/enter">
-        <input type = "text" name = "user"/>
+        <TextField variant = "standard" type = "text" name = "user" placeholder = "Name, press enter" style = {{backgroundColor: "white" }}       InputProps={{
+          startAdornment: (
+            <InputAdornment position="start">
+              <AccountCircle  style={{ color: "#97CC04" }}/>
+            </InputAdornment>
+          ),
+        }} />
       </form>
-      </div>
+      </Card>
     </>
   );
 };
