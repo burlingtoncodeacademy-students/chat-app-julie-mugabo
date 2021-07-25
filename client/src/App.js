@@ -8,7 +8,7 @@ function App() {
       <BrowserRouter>
         <Switch>
           <Route path='/' component={Welcome} exact />
-          <Route path='/chat' component={Chat} />
+          <Route path='/chat/:user/channels/:channel' component={Chat} />
         </Switch>
       </BrowserRouter>
     </>

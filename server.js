@@ -34,15 +34,17 @@ db.on('error', console.error.bind(console, 'conection error'));
 
 app.post('/enter', (req, res) => {
   //setting user to the body of the request
-  const { user } = req.body;
+  const { user, channel } = req.body;
 
-  res.redirect(`/chat/${user}`);
+  res.redirect(`/chat/${user}/channels/${channel}`);
 });
 
 // RESTful endpoint to send & save a message to a channel
 app.post('/messages/:channel', (req, res) => {
   const { channel } = req.params; // get from endpoint path
   const { message, user } = req.body; // get from html form
+
+  console.log('req', req);
 
   let savedMsg = new Message({
     when: new Date().toISOString(),
