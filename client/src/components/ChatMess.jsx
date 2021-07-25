@@ -4,7 +4,8 @@ const ChatMess = (props) => {
   const [messages, setMessages] = useState([]);
   const [update, setUpdate] = useState(0);
 
-  setInterval(() => setUpdate(update + 1), 10000);
+  // TODO change to 10 seconds  (curently on 5 minutes)
+  setInterval(() => setUpdate(update + 1), 60000 * 5);
 
   useEffect(() => {
     fetch('/messages')
