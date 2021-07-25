@@ -1,6 +1,8 @@
 import { useLocation } from 'react-router-dom';
 import { useState } from 'react';
 
+import { TextareaAutosize } from '@material-ui/core';
+
 const ChatFoot = () => {
   const [channel, setchannel] = useState('general');
 
@@ -10,12 +12,15 @@ const ChatFoot = () => {
 
   return (
     <>
-      {/* ? how do we set channel? where do we do that? I think from the parent... */}
       <form action={`/messages/${channel}`} method='POST'>
-        <input type='text' placeholder={`Talk to #${channel}`} name='message' />
+        <TextareaAutosize
+          variant='outlined'
+          placeholder={`Talk to #${channel}`}
+          name='message'
+          style={{ width: '50vw' }}
+        />
         <input type='hidden' value={user} name='user' />
       </form>
-      <button>Refresh chat</button>
     </>
   );
 };
