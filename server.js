@@ -39,31 +39,10 @@ app.post('/enter', (req, res) => {
   res.redirect(`/chat/${user}`);
 });
 
-app.post('/send', (req, res) => {
-  const { message, user } = req.body;
-
-  let savedMsg = new Message({
-    when: new Date().toISOString(),
-    body: message,
-    user: user,
-  });
-
-  savedMsg.save((err, doc) => {
-    if (err) {
-      console.log(err.message);
-    } else {
-      console.log(`Message sent: ${doc}`);
-    }
-  });
-
-  // stay on the same user's chat
-  res.status(204).send();
-});
-
 // RESTful endpoint to send & save a message to a channel
-// TODO Remove app.post('/send') once fully functional
 app.post('/messages/:channel', (req, res) => {
-  const { message, user, channel } = req.body;
+  const { channel } = req.params; // get from endpoint path
+  const { message, user } = req.body; // get from html form
 
   let savedMsg = new Message({
     when: new Date().toISOString(),
