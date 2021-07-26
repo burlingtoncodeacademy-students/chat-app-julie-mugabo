@@ -1,7 +1,7 @@
-import { useState, useEffect } from 'react';
-import { styles } from './styles';
-import { useLocation } from 'react-router-dom';
-import { CssBaseline, Typography } from '@material-ui/core';
+import { useState, useEffect } from "react";
+import { styles } from "./styles";
+import { useLocation } from "react-router-dom";
+import { CssBaseline, Typography } from "@material-ui/core";
 
 const ChatMess = (props) => {
   const [messages, setMessages] = useState([]);
@@ -9,12 +9,12 @@ const ChatMess = (props) => {
 
   const location = useLocation();
 
-  // TODO change to 10 seconds  (curently on 5 minutes)
-  setInterval(() => setUpdate(update + 1), 60000 * 5);
+  // setting fetch refresh rate to every ten seconds
+  setInterval(() => setUpdate(update + 1), 10000);
 
   useEffect(() => {
     // get channel from restful path
-    const channel = location.pathname.split('/')[4];
+    const channel = location.pathname.split("/")[4];
 
     // fetch channel messages
     fetch(`/messages/${channel}`)
@@ -24,15 +24,18 @@ const ChatMess = (props) => {
         console.log(data);
       });
 
-    return () => {
-      // cleanup;
-    };
+    /*fetch occurs every time update changes (currently 10 seconds)
+    and when location (mapping to channel) changes
+    */
   }, [update, location]);
 
   return (
     <>
+      {/* CssBaseline resets page css to a consistent baseline for styling */}
       <CssBaseline />
+      {/* importing styles for this component from the styles.js file */}
       <div style={styles.ChatMess}>
+        {/* iterating through the messages to dynamically display them  */}
         {messages.map((msg, index) => (
           <Typography key={index}>
             {msg.user}: {msg.body} ({msg.when})

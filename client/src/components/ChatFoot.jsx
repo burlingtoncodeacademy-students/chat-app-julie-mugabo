@@ -1,67 +1,28 @@
-import React from 'react';
-import { useState } from 'react';
-import { useLocation } from 'react-router-dom';
-import { TextField } from '@material-ui/core';
+import React from "react";
+import { useLocation } from "react-router-dom";
+import { TextField } from "@material-ui/core";
 
 const ChatFoot = () => {
-  const [userInput, setUserInput] = useState('');
-
+  /*set up to dynamically grab the user's name and the channel they are in 
+to be reflected in the placeholder text of the message and to send along with our post*/
   let location = useLocation();
-  const textInput = React.useRef();
 
-  let user = location.pathname.split('/')[2];
-  let channel = location.pathname.split('/')[4];
-
-  // helper to clear input
-  const handleChange = (evt) => {
-    console.log('evt', evt);
-    setUserInput(evt.target.value);
-  };
-
-  // clear input field on submit
-  const handleSubmit = (evt) => {
-    console.log('Entering handleSubmit...');
-
-    // we'll handle submit with fetch in order to clean
-    evt.preventDefault();
-
-    let msgBody = {
-      user: user,
-      body: userInput,
-    };
-
-    console.log('msgBody', JSON.stringify(msgBody));
-
-    // submit form
-    fetch(`/messages/${channel}/`, {
-      method: 'post',
-      headers: {
-        Accept: 'application/json, text/plain, */*',
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify(msgBody),
-    })
-      .then(function (res) {
-        return res.json();
-      })
-      .then(function (data) {
-        // clear input
-        setUserInput('');
-      });
-  };
+  let user = location.pathname.split("/")[2];
+  let channel = location.pathname.split("/")[4];
 
   return (
     <>
-      <form onSubmit={handleSubmit}>
+    {/* action points to API endpoint /messages/:channel */}
+      <form action={`/messages/${channel}`} method="POST">
+        {/* MaterialUi component equivalent of text area, serving as chat message body for POST */}
         <TextField
-          onChange={handleChange}
-          value={userInput}
-          variant='outlined'
+          variant="outlined"
           placeholder={`Talk to #${channel}`}
-          name='message'
-          style={{ width: '50vw' }}
+          name="message"
+          style={{ width: "50vw" }}
         />
-        <input type='hidden' value={user} name='user' />
+        {/* passing in user as hidden input for our POST */}
+        <input type="hidden" value={user} name="user" />
       </form>
     </>
   );
