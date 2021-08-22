@@ -17,7 +17,7 @@ to be reflected in the placeholder text of the message and to send along with ou
         {/* MaterialUi component equivalent of text area, serving as chat message body for POST */}
         <TextField
           variant="outlined"
-          placeholder={`Talk to #${channel}`}
+          placeholder={`Talk to #${channel} by typing your message and pressing ENTER`}
           name="message"
           style={{ width: "50vw" }}
         />
